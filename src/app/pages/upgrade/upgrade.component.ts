@@ -51,12 +51,16 @@ const colors: any = {
 export class UpgradeComponent{
 
   ProjetName:string= 'Projet from TS'; 
+  date1: any;
+  date2: any;
+  date3: any;
   valuesOfTable = '';
-  
+
   onKey(event: any) { // without type info
     this.valuesOfTable = event.target.value;
 
     console.log ('-----------> '+ this.valuesOfTable);
+
   }
 
 
@@ -134,6 +138,7 @@ export class UpgradeComponent{
     }
   ];
 
+
   activeDayIsOpen: boolean = true;
 
   constructor(private modal: NgbModal) {}
@@ -152,6 +157,24 @@ export class UpgradeComponent{
     }
   }
 
+  getDate(){
+ 
+    this.date1 = this.events[0].end.getDate;
+    this.date2 = this.events[0].start.getDate;
+    this.date3 = this.date2 - this.date1
+
+    console.log ('Resultat  -----------> '+this.date3);
+
+    console.log ('Start -----------> '+this.events[0].start);
+    console.log ('End -----------> '+this.events[0].end);
+
+    console.log ('Start-----------> '+this.events[1].start);
+    console.log ('End-----------> '+this.events[1].end);
+
+    console.log ('Start-----------> '+this.events[2].start);
+    console.log ('End-----------> '+this.events[3].end);
+
+  }
   eventTimesChanged({
     event,
     newStart,

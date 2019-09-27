@@ -98,7 +98,7 @@
                   <td>
                     <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start"
                       (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
-                      dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i" placeholder="Not set"  (keyup)="onKey($event)"/>
+                      dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i" placeholder="Not set" />
                   </td>
                   <td>
                     <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end"
@@ -114,7 +114,7 @@
               </tbody>
             </table>
             <h6>
-              <button class="btn btn-round btn-primary pull-right" (click)="addEvent()">
+              <button class="btn btn-round btn-primary pull-right" (click)="getDate()">
                 Valider
               </button>
             </h6>
@@ -184,7 +184,7 @@
             <tbody>
               <tr>
                 <td>
-                  <input type="text" [(ngModel)]="ProjetName">
+                  {{ ProjetName }}
                 </td>
                 <td>
                   Niger
