@@ -3,43 +3,29 @@
     <div class="card card-upgrade">
       <div class="card-header text-center">
         <h4 class="card-title">Calendrier des projets </h4>
-          <p class="card-category">Ici une petite description : bal bla bla </p>
+        <p class="card-category">Ici une petite description : bal bla bla </p>
       </div>
       <div class="card-body">
         <div class="table-responsive table-upgrade">
-          
-          
-          
-        
-          
+
+
+
+
+
 
           <div class="row text-center">
             <div class="col-md-4">
               <div class="btn-group">
-                <div
-                  class="btn btn-primary"
-                  mwlCalendarPreviousView
-                  [view]="view"
-                  [(viewDate)]="viewDate"
-                  (viewDateChange)="closeOpenMonthViewDay()"
-                >
-                Précédent
+                <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                  (viewDateChange)="closeOpenMonthViewDay()">
+                  Précédent
                 </div>
-                <div
-                  class="btn btn-outline-secondary"
-                  mwlCalendarToday
-                  [(viewDate)]="viewDate"
-                >
-                Aujourd'hui
+                <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                  Aujourd'hui
                 </div>
-                <div
-                  class="btn btn-primary"
-                  mwlCalendarNextView
-                  [view]="view"
-                  [(viewDate)]="viewDate"
-                  (viewDateChange)="closeOpenMonthViewDay()"
-                >
-                Suivant
+                <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                  (viewDateChange)="closeOpenMonthViewDay()">
+                  Suivant
                 </div>
               </div>
             </div>
@@ -48,25 +34,16 @@
             </div>
             <div class="col-md-4">
               <div class="btn-group">
-                <div
-                  class="btn btn-primary"
-                  (click)="setView(CalendarView.Month)"
-                  [class.active]="view === CalendarView.Month"
-                >
+                <div class="btn btn-primary" (click)="setView(CalendarView.Month)"
+                  [class.active]="view === CalendarView.Month">
                   Mois
                 </div>
-                <div
-                  class="btn btn-primary"
-                  (click)="setView(CalendarView.Week)"
-                  [class.active]="view === CalendarView.Week"
-                >
+                <div class="btn btn-primary" (click)="setView(CalendarView.Week)"
+                  [class.active]="view === CalendarView.Week">
                   Semaine
                 </div>
-                <div
-                  class="btn btn-primary"
-                  (click)="setView(CalendarView.Day)"
-                  [class.active]="view === CalendarView.Day"
-                >
+                <div class="btn btn-primary" (click)="setView(CalendarView.Day)"
+                  [class.active]="view === CalendarView.Day">
                   Day
                 </div>
               </div>
@@ -74,49 +51,32 @@
           </div>
           <br />
           <div [ngSwitch]="view">
-            <mwl-calendar-month-view
-              *ngSwitchCase="CalendarView.Month"
-              [viewDate]="viewDate"
-              [events]="events"
-              [refresh]="refresh"
-              [activeDayIsOpen]="activeDayIsOpen"
-              (dayClicked)="dayClicked($event.day)"
-              (eventClicked)="handleEvent('Clicked', $event.event)"
-              (eventTimesChanged)="eventTimesChanged($event)"
-            >
+            <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+              [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+              (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-month-view>
-            <mwl-calendar-week-view
-              *ngSwitchCase="CalendarView.Week"
-              [viewDate]="viewDate"
-              [events]="events"
-              [refresh]="refresh"
-              (eventClicked)="handleEvent('Clicked', $event.event)"
-              (eventTimesChanged)="eventTimesChanged($event)"
-            >
+            <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
+              [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+              (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-week-view>
-            <mwl-calendar-day-view
-              *ngSwitchCase="CalendarView.Day"
-              [viewDate]="viewDate"
-              [events]="events"
-              [refresh]="refresh"
-              (eventClicked)="handleEvent('Clicked', $event.event)"
-              (eventTimesChanged)="eventTimesChanged($event)"
-            >
+            <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"
+              [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+              (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-day-view>
           </div>
-          
+
           <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
-          
+
           <br /><br /><br />
-          
+
           <h5>
-            Modifier projet 
+            Modifier projet
             <button class="btn btn-round btn-primary pull-right" (click)="addEvent()">
               Ajouter projet
             </button>
             <div class="clearfix"></div>
           </h5>
-          
+
           <div class="table-responsive">
             <table class="table table-bordered">
               <thead>
@@ -129,60 +89,27 @@
                   <th>Supprimer</th>
                 </tr>
               </thead>
-          
+
               <tbody>
                 <tr *ngFor="let event of events">
                   <td>
-                    <input
-                      type="text"
-                      class="form-control"
-                      [(ngModel)]="event.title"
-                      (keyup)="refresh.next()"
-                    />
+                    <input type="text" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()" />
                   </td>
                   <td>
-                    <input
-                      type="color"
-                      [(ngModel)]="event.color.primary"
-                      (change)="refresh.next()"
-                    />
+                    <input type="color" [(ngModel)]="event.color.primary" (change)="refresh.next()" />
                   </td>
                   <td>
-                    <input
-                      type="color"
-                      [(ngModel)]="event.color.secondary"
-                      (change)="refresh.next()"
-                    />
+                    <input type="color" [(ngModel)]="event.color.secondary" (change)="refresh.next()" />
                   </td>
                   <td>
-                    <input
-                      class="form-control"
-                      type="text"
-                      mwlFlatpickr
-                      [(ngModel)]="event.start"
-                      (ngModelChange)="refresh.next()"
-                      [altInput]="true"
-                      [convertModelValue]="true"
-                      [enableTime]="true"
-                      dateFormat="Y-m-dTH:i"
-                      altFormat="F j, Y H:i"
-                      placeholder="Not set"
-                    />
+                    <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start"
+                      (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
+                      dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i" placeholder="Not set" />
                   </td>
                   <td>
-                    <input
-                      class="form-control"
-                      type="text"
-                      mwlFlatpickr
-                      [(ngModel)]="event.end"
-                      (ngModelChange)="refresh.next()"
-                      [altInput]="true"
-                      [convertModelValue]="true"
-                      [enableTime]="true"
-                      dateFormat="Y-m-dTH:i"
-                      altFormat="F j, Y H:i"
-                      placeholder="Not set"
-                    />
+                    <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end"
+                      (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
+                      dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i" placeholder="Not set" />
                   </td>
                   <td>
                     <button class="btn btn-round btn-danger" (click)="deleteEvent(event)">
@@ -193,7 +120,7 @@
               </tbody>
             </table>
           </div>
-          
+
           <ng-template #modalContent let-close="close">
             <div class="modal-header">
               <h5 class="modal-title">Event action occurred</h5>
@@ -225,65 +152,58 @@
 
 
 <div class="row">
-    <div class="col-md-12">
-      <div class="card ">
-        <div class="card-header ">
-          <h5 class="card-title">Nombre d'heures par projets</h5>
-          <p class="card-category">Nombre d'heurs effectués dans chaque projet</p>
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+        <h5 class="card-title">Nombre d'heures par projets</h5>
+        <p class="card-category">Nombre d'heurs effectués dans chaque projet</p>
+      </div>
+      <div class="card-body ">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                Projet
+              </th>
+              <th>
+                Nombre de jours
+              </th>
+              <th>
+                Nombre d'heurs
+              </th>
+              <th class="text-right">
+                Salaire
+              </th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  Projet
+                </td>
+                <td>
+                  Niger
+                </td>
+                <td>
+                  Oud-Turnhout
+                </td>
+                <td class="text-right">
+                  $36,738
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="card-body ">
-            <div class="table-responsive">
-                <table class="table">
-                  <thead class=" text-primary">
-                    <th>
-                      Projet
-                    </th>
-                    <th>
-                      Nombre de jours
-                    </th>
-                    <th>
-                      Nombre d'heurs
-                    </th>
-                    <th class="text-right">
-                      Salaire
-                    </th>
-                  </thead>
-                  <tbody>
-                      <tr>
-                        <td>
-                          Projet
-                        </td>
-                        <td>
-                          Niger
-                        </td>
-                        <td>
-                          Oud-Turnhout
-                        </td>
-                        <td class="text-right">
-                          $36,738
-                        </td>
-                      </tr>
-                  </tbody>
-                </table>
-            </div>
+      </div>
+      <div class="card-footer ">
+        <div class="legend">
+
         </div>
-        <div class="card-footer ">
-          <div class="legend">
-          
-          </div>
-
-         
-          
-                  
-
-
-          <hr>
-          <div class="stats">
-            <i class="fa fa-calendar"></i> Totale d'heures : 
-          </div>
+        <hr>
+        <div class="stats">
+          <i class="fa fa-calendar"></i> Totale d'heures :
         </div>
       </div>
     </div>
-   
   </div>
-  
+
+</div>
