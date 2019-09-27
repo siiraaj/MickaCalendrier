@@ -49,6 +49,19 @@ const colors: any = {
 })
 
 export class UpgradeComponent{
+
+  ProjetName:string= 'Projet from TS'; 
+  valuesOfTable = '';
+  
+  onKey(event: any) { // without type info
+    this.valuesOfTable = event.target.value;
+
+    console.log ('-----------> '+ this.valuesOfTable);
+  }
+
+
+
+
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;

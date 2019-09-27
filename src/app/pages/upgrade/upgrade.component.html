@@ -69,16 +69,10 @@
 
           <br /><br /><br />
 
-          <h5>
-            Modifier projet
-            <button class="btn btn-round btn-primary pull-right" (click)="addEvent()">
-              Ajouter projet
-            </button>
-            <div class="clearfix"></div>
-          </h5>
+
 
           <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table">
               <thead>
                 <tr>
                   <th>Nom</th>
@@ -104,7 +98,7 @@
                   <td>
                     <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start"
                       (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
-                      dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i" placeholder="Not set" />
+                      dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i" placeholder="Not set"  (keyup)="onKey($event)"/>
                   </td>
                   <td>
                     <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end"
@@ -119,7 +113,19 @@
                 </tr>
               </tbody>
             </table>
+            <h6>
+              <button class="btn btn-round btn-primary pull-right" (click)="addEvent()">
+                Valider
+              </button>
+            </h6>
+            <h6>
+              <button class="btn btn-round btn-dark pull-left" (click)="addEvent()">
+                Ajouter un projet
+              </button>
+              <div class="clearfix"></div>
+            </h6>
           </div>
+
 
           <ng-template #modalContent let-close="close">
             <div class="modal-header">
@@ -178,13 +184,13 @@
             <tbody>
               <tr>
                 <td>
-                  Projet
+                  <input type="text" [(ngModel)]="ProjetName">
                 </td>
                 <td>
                   Niger
                 </td>
                 <td>
-                  Oud-Turnhout
+                  <input (keyup)="onKey($event)">
                 </td>
                 <td class="text-right">
                   $36,738
