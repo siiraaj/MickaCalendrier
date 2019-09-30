@@ -17,7 +17,7 @@ import {
   addHours
 } from 'date-fns';
 import { Subject } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbTimepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -42,24 +42,29 @@ const colors: any = {
 
 
 @Component({
-    selector: 'upgrade-cmp',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    moduleId: module.id,
-    templateUrl: 'upgrade.component.html'
+  selector: 'upgrade-cmp',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  moduleId: module.id,
+  templateUrl: 'upgrade.component.html'
 })
 
-export class UpgradeComponent{
+export class UpgradeComponent {
 
-  ProjetName:string= 'Projet from TS'; 
+  ProjetName: string = 'Projet from TS';
   date1: any;
   date2: any;
   date3: any;
+  date4: any;
+  dure1: any;
+
+  dure2: any;
+
   valuesOfTable = '';
 
   onKey(event: any) { // without type info
     this.valuesOfTable = event.target.value;
 
-    console.log ('-----------> '+ this.valuesOfTable);
+    console.log('-----------> ' + this.valuesOfTable);
 
   }
 
@@ -141,7 +146,7 @@ export class UpgradeComponent{
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -156,25 +161,45 @@ export class UpgradeComponent{
       this.viewDate = date;
     }
   }
+  formatDate(date) {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
 
-  getDate(){
- 
-    this.date1 = this.events[0].end.getDate;
-    this.date2 = this.events[0].start.getDate;
-    this.date3 = this.date2 - this.date1
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
 
-    console.log ('Resultat  -----------> '+this.date3);
-
-    console.log ('Start -----------> '+this.events[0].start);
-    console.log ('End -----------> '+this.events[0].end);
-
-    console.log ('Start-----------> '+this.events[1].start);
-    console.log ('End-----------> '+this.events[1].end);
-
-    console.log ('Start-----------> '+this.events[2].start);
-    console.log ('End-----------> '+this.events[3].end);
-
+    return [year, month, day].join('-');
   }
+
+  getNumbersofDays(date1, date2) {
+    var res = date1.getTime() - date2.getTime()
+    return res / (1000 * 3600 * 24)
+  }
+
+  getDate() {
+    
+    this.date1 = this.events[0].end;
+    this.date2 = this.events[0].start;
+    this.date3 = Date.parse(this.date2) - Date.parse(this.date1);
+
+    this.dure1 = this.getNumbersofDays(this.date1, this.date2);
+
+
+    console.log('Resultat  -----------> ' + this.dure1);
+    console.log('Start  1-----------> ' + this.formatDate(this.date1));
+    console.log('End -----------> ' + this.formatDate(this.date2));
+
+    console.log('Start-----------> ' + this.events[1].start);
+    console.log('End-----------> ' + this.events[1].end);
+
+    console.log('Start-----------> ' + this.events[2].start);
+    console.log('End-----------> ' + this.events[3].end);
+  }
+
   eventTimesChanged({
     event,
     newStart,
