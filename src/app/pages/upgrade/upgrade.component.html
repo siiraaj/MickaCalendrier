@@ -9,10 +9,6 @@
         <div class="table-responsive table-upgrade">
 
 
-
-
-
-
           <div class="row text-center">
             <div class="col-md-4">
               <div class="btn-group">
@@ -182,18 +178,19 @@
               </th>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let event of events ">
                 <td>
-                  {{ ProjetName }}
+                  <input type="text" readonly="readonly" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()" />
                 </td>
                 <td>
-                  Niger
+                  {{DureeProjet1}}
+                <td>
+                  {{DureeProjet1 * 8}}
                 </td>
                 <td>
-                  <input (keyup)="onKey($event)">
-                </td>
-                <td class="text-right">
-                  $36,738
+                  <button class="btn btn-round btn-danger" (click)="deleteEvent(event)">
+                    Supprimer
+                  </button>
                 </td>
               </tr>
             </tbody>

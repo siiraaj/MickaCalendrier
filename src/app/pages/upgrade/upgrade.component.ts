@@ -55,7 +55,14 @@ export class UpgradeComponent {
   date2: any;
   date3: any;
   date4: any;
-  dure1: any;
+  date5: any;
+  date6: any;
+  date7: any;
+  date8: any;
+  DureeProjet1: any; 
+  DureeProjet2 : any;
+  DureeProjet3 : any;
+  DureeProjet4 : any;
 
   dure2: any;
 
@@ -184,20 +191,31 @@ export class UpgradeComponent {
     
     this.date1 = this.events[0].end;
     this.date2 = this.events[0].start;
-    this.date3 = Date.parse(this.date2) - Date.parse(this.date1);
 
-    this.dure1 = this.getNumbersofDays(this.date1, this.date2);
+    this.date3 = this.events[1].end;
+    this.date4 = this.events[1].start;
+
+    this.date5 = this.events[2].end;
+    this.date6 = this.events[2].start;
+
+    this.date7 = this.events[3].end;
+    this.date8 = this.events[3].start;
 
 
-    console.log('Resultat  -----------> ' + this.dure1);
-    console.log('Start  1-----------> ' + this.formatDate(this.date1));
-    console.log('End -----------> ' + this.formatDate(this.date2));
+    this.DureeProjet1 = this.getNumbersofDays(this.date1, this.date2);
+    this.DureeProjet2 = this.getNumbersofDays(this.date3, this.date4);
+    this.DureeProjet3 = this.getNumbersofDays(this.date5, this.date6);
+    this.DureeProjet4 = this.getNumbersofDays(this.date7, this.date8);
 
-    console.log('Start-----------> ' + this.events[1].start);
-    console.log('End-----------> ' + this.events[1].end);
+    
 
-    console.log('Start-----------> ' + this.events[2].start);
-    console.log('End-----------> ' + this.events[3].end);
+
+    console.log('Duree Projet 1  -----------> ' + this.DureeProjet1);
+    console.log('Duree Projet 2  -----------> ' + this.DureeProjet2);
+    console.log('Duree Projet 3  -----------> ' + this.DureeProjet3);
+    console.log('Duree Projet 4  -----------> ' + this.DureeProjet4);
+
+    
   }
 
   eventTimesChanged({
